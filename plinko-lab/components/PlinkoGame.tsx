@@ -50,6 +50,13 @@ export default function PlinkoGame(props: PlinkoGameProps) {
       const commitRes = await fetch('/api/rounds/commit', { method: 'POST' });
       const commitData = await commitRes.json();
 
+      if (!commitRes.ok || !commitData.roundId) {
+        console.error('Failed to commit round:', commitData);
+        alert('Server Error: Database is read-only or unavailable.');
+        setIsDropping(false);
+        return;
+      }
+
       // 2. Start
       const startRes = await fetch(`/api/rounds/${commitData.roundId}/start`, {
         method: 'POST',
