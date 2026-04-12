@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Round {
+  id               String    @id @default(cuid())
+  createdAt        DateTime  @default(now())
+  status           String    // "CREATED" | "STARTED" | "REVEALED"
+
+  // Fairness
+  nonce            String
+  commitHex        String    // SHA256(serverSeed:nonce)
+  serverSeed       String    // stored internally immediately, but not returned to client until REVEALED
+  clientSeed       String?
+  combinedSeed     String?   // SHA256(serverSeed:clientSeed:nonce)
+  pegMapHash       String?
+
+  // Game
+  rows             Int?      // e.g. 12
+  dropColumn       Int?      // 0..12
+  binIndex         Int?      // 0..12
+  payoutMultiplier Float?
+  betCents         Int?
+  pathJson         String?   // decisions per row for replay (JSON string)
+  revealedAt       DateTime?
+}
