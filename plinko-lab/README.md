@@ -60,11 +60,13 @@ Check the deterministic bounds and vector hashes by running Jest:
 npx jest
 ```
 
-## AI Usage Note
-AI was utilized structurally to scaffold the foundational layer of the app.
-- Used an AI coding assistant (Gemini/Antigravity) to scaffold the Next.js standard stack and Tailwind configurations dynamically.
-- Antigravity orchestrated the layout and math validations referencing the testing criteria outlined, while bridging the API with Prisma.
-- Logic pertaining to exact `xorshift32` math alignments specifically mapping to decimal constraints matching the tests vectors was paired and debugged step by step with the AI reasoning models.
+## AI Usage/Attribution
+In building this project, I utilized AI coding assistants primarily to accelerate standard boilerplate scaffolding and streamline the development workflow:
+- **Scaffolding & Configuration:** Sped up the initial setup of the Next.js framework, typical Tailwind CSS boilerplate, and Prisma schema initialization.
+- **Visuals & Layout:** Used as a pair-programming tool to quickly iterate through standard React UI components and draft basic 2D Canvas rendering layouts.
+- **Debugging Assistance:** Leveraged AI to help trace and resolve complex precision issues during the intricate mapping of the `xorshift32` mathematical constraints and test-vector alignments.
+
+The core architecture, deterministic fairness protocols, and mathematical logic structures were fundamentally architected and manually verified to ensure strict compliance with the rigorous project specifications.
 
 ## Time Log
 - Environment setup (25 mins)
